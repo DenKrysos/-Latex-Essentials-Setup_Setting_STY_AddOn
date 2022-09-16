@@ -802,14 +802,14 @@ O{\includestandalonedefaultmode} m O{\tikzFilesPath} m o m >{\SplitList{,}}O{1,1
 		\expandafter\efigure\expandafter[\tikzFloatPositioning]%
 			\centering%
 % 	 		\fbox{%
-			\includestandalone[width=\tikzwidth,angle=#8,mode=#1]{#3/#2}%
+			\includestandalone[width=\tikzwidth,angle=#9,mode=#1]{#3/#2}%
 % 	 		}%
 			\IfValueTF{#5}{%
 				\caption[#5]{#4}%
 			}{%
 				\caption{#4}%
 			}%
-			\label{#7}%
+			\label{#8}%
 		\efigureend%
 	}{%
 		\expandafter\efigure\expandafter[\tikzFloatPositioning]%
