@@ -42,17 +42,27 @@
 \usepackage[english,german,ngerman]{translator}%
 \usepackage{siunitx}%
 \sisetup{%
-    % group-separator={,},%
-    % output-decimal-marker={.},%
-    fraction-function=\nicefrac% \dfrac
+    input-ignore={,},%
+    input-decimal-markers={.},%
+    %output-decimal-marker={.},%
+    %group-separator={,},%
+    group-minimum-digits=5,% Determines the number of digits after which the grouping starts to be applied. Default: 5
+    group-digits=all,%
+    fraction-function=\nicefrac% \dfrac 
 }%
 \DeclareSIUnit{\calorie}{cal}%
 \DeclareSIUnit{\tablespoon}{\translate{tbsp}}%
 \DeclareSIUnit{\teaspoon}{\translate{tsp}}%
 \newtranslation[to=German]{tbsp}{EL}%
 \newtranslation[to=German]{tsp}{TL}%
-\addto\extrasgerman{\sisetup{locale=DE,group-separator={.},output-decimal-marker={,},detect-all}}%
-\addto\extrasenglish{\sisetup{locale=US,group-separator={,},detect-all}}%
+\addto\extrasgerman{\sisetup{locale=DE,output-decimal-marker={,},group-separator={.},detect-all}}%
+\addto\extrasenglish{\sisetup{locale=US,output-decimal-marker={.},group-separator={,},detect-all}}%
+% For some reason, group-separator does not work in the addto configuration, hence adding it again below
+\expandafter\ifstrequal\expandafter{\DenKrLanguageStringCmd}{ngerman}{%
+    \sisetup{locale=DE,group-separator={.}}%
+}{\expandafter\ifstrequal\expandafter{\DenKrLanguageStringCmd}{english}{%
+    \sisetup{locale=US,group-separator={,}}%
+}{}}%
 %
 %  Example:
 %        \qty[locale=DE]{2}{\tablespoon}
