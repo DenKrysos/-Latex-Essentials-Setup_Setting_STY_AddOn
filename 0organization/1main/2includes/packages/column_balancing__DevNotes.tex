@@ -1,4 +1,4 @@
-
+%
 % Variant "tikzmark"
 %    - Stores in .aux-File
 %----------------------------------------------------
@@ -140,3 +140,38 @@ Random text\footnote{A random footnote.}.
 %####################################################
 %====================================================
 %----------------------------------------------------
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%==========================================
+%     Dev-Notes for me
+%==========================================
+% Interesting registers/cmds:
+% - - - - -
+% \the\textheight \ |\  \the\pagegoal \ |\  \the\pagetotal
+% \the\dimexpr\pagegoal-\pagetotal\relax
+%
+% \getnoflines{\dimexpr\pagegoal-\pagetotal\relax}
+% \number\noflines
+%
+% \newdimen\spaceleft
+% \spaceleft=\dimexpr\textheight-\pagetotal\relax
+% \the\spaceleft
+% - - In Plain-Tex:
+% \newdimen\spaceleft
+% \spaceleft=\textheight
+% \advance\spaceleft by -\pagetotal
+% Remaining space (above this line):
+% \showthe\spaceleft
