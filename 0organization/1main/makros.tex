@@ -140,9 +140,9 @@
 %
 % Requires Packages:
 %  pict2e, fp, xparse, tikz, mathtools, cals, amssymb
-%=================================
-% Some More Symbols
 %================================================
+% Some More Symbols
+%=================================
 % \newcommand{\compoundarrow}{\rule[0.5ex]{0.6ex}{0.6ex}\scriptsize\raise2pt\hbox{$\!{\blacktriangleright}$}}%
 \newcommand{\compoundarrow}{\tikz{%
 \def\compoundarrowDimXOne{1ex}%
@@ -151,6 +151,15 @@
 \def\compoundarrowDimYTwo{1.2ex}%
 \path[fill,line join=miter,rounded corners=0](0,0)--++(\compoundarrowDimXOne,0)--++(0,-\compoundarrowDimYOne)--++(\compoundarrowDimXTwo,\compoundarrowDimYTwo)--++(-\compoundarrowDimXTwo,\compoundarrowDimYTwo)--++(0,-\compoundarrowDimYOne)--++(-\compoundarrowDimXOne,0)--cycle;%
 }}%
+\newcommand{\oblongdash}{\tikz{%
+% \def\oblongdashSideY{0.7ex}%
+% \def\oblongdashSideX{2*\oblongdashSideY}%
+\def\oblongdashSideX{0.5em}%
+\def\oblongdashSideY{0.3*\oblongdashSideX}%
+\path[fill,draw=none,line join=round,rounded corners=0.4*\oblongdashSideY](0,0)--++(\oblongdashSideX,0)--++(0,\oblongdashSideY)--++(-\oblongdashSideX,0)--cycle;%
+}}%
+%
+%
 \newcommand{\tikzarrow}{\tikz{\usetikzlibrary{shapes.arrows}\node[single arrow,scale=0.2,inner sep=2ex,fill]at(0,0){};}}%
 %
 \makeatletter%
@@ -214,17 +223,42 @@
 %
 %
 %
+%================================================
+% Presets for Usage as Itemization Label
 %=================================
+% USAGE: \begin{itemize}[labpragA]   or   \item[\labpragAsym]
+%   (Standing for: Label-Prägnanz-# (EN: Conciseness)
+%   (The \labprag#sym can be used for single items as they do only define the Symbol itself
+%   (The \'abprag#' are defined to be readily usable for a whole itemization environment (i.e. comprise also a fitting left-margin)
+%      (The latter one is a defined Key for enumitem.sty. These are set inside the file "2includes/packages/itemEnum.tex")
+\newcommand{\labpragAsym}{\raisebox{.5\height}{\textbf{\scriptsize$\rightarrow$}}}%
+\newcommand{\labpragBsym}{\raisebox{.5\height}{\textbf{$\scriptstyle\Rightarrow$}}}%
+\newcommand{\labpragCsym}{\raisebox{.5\height}{\scalebox{0.7}{$\pointright$}}}%
+\newcommand{\labpragDsym}{\raisebox{.4\height}{\scalebox{0.7}{$\blacktriangleright$}}}%
+\newcommand{\labpragEsym}{\raisebox{.1\height}{\scalebox{0.6}{\compoundarrow}}}%
+%=================================
+% Label-Presets END
+%================================================
+%
+%
+%
+%
+%================================================
 % Some Label Symbols
 %  (Some use dingbats, which requires LuaLaTeX or the 'pifonts' package
-%================================================
-\newcommand{\labItDefaultA}{\textbullet}%
-\newcommand{\labItDefaultB}{\textbf{--}}%
-\newcommand{\labItDefaultC}{\ast}%
-\newcommand{\labItDefaultD}{\textperiodcentered}%
+%    (These are also moldet into enumitemKeys in "2includes/packages/itemEnum.tex")
+%    (Usage of these then: Simply omit the 'sym' part and the '\'
+%=================================
+\newcommand{\labItDefaultSymA}{\textbullet}%
+\newcommand{\labItDefaultSymB}{\textbf{--}}%
+\newcommand{\labItDefaultSymC}{$\mathrm{\ast}$}%
+\newcommand{\labItDefaultSymD}{\textperiodcentered}%
 %
-\newcommand{\labDKsymDot}{\textperiodcentered}%
+\newcommand{\labDKsymBullet}{\textbullet}%
+\newcommand{\labDKsymGeviert}{\textbf{--}}%
 \newcommand{\labDKsymAst}{$\mathrm{\ast}$}%
+\newcommand{\labDKsymDot}{\textperiodcentered}%
+\newcommand{\labDKsymOblong}{\raiseC{\oblongdash}}%
 \newcommand{\labDKsymPointright}{\raiseC{\scalebox{0.7}{$\pointright$}}}%
 \newcommand{\labDKsymTriangle}{\raisebox{0.3\height}{\scalebox{0.9}{$\triangleright$}}}%
 \newcommand{\labDKsymTriangleBl}{\raiseC{\scalebox{0.7}{$\blacktriangleright$}}}%
@@ -240,47 +274,9 @@
 \newcommand{\labDKsymCrossE}{\raiseC{\scalebox{0.7}{\ding{107}}}}%
 %-------------------------------------------
 % Setting labels (includes margin adjustment
-\SetEnumitemKey{labDKDot}{label=\labDKsymDot,leftmargin=0.9em}%
-\SetEnumitemKey{labDKAst}{label=\labDKsymAst,leftmargin=1.0em}%
-\SetEnumitemKey{labDKPointright}{label=\labDKsymPointright,leftmargin=1.3em}%
-\SetEnumitemKey{labDKTriangle}{label=\labDKsymTriangle,leftmargin=1.0em}%
-\SetEnumitemKey{labDKTriangleBl}{label=\labDKsymTriangleBl,leftmargin=1.05em}%
-\SetEnumitemKey{labDKLozenge}{label=\labDKsymLozenge,leftmargin=1.0em}%
-\SetEnumitemKey{labDKLozengeBl}{label=\labDKsymLozengeBl,leftmargin=1.0em}%
-\SetEnumitemKey{labDKSquare}{label=\labDKsymSquare,leftmargin=1.0em}%
-\SetEnumitemKey{labDKSquareBl}{label=\labDKsymSquareBl,leftmargin=1.0em}%
-\SetEnumitemKey{labDKDiamondSplit}{label=\labDKsymDiamondSplit,leftmargin=1.1em}%
-\SetEnumitemKey{labDKCrossA}{label=\labDKsymCrossA,leftmargin=1.1em}%
-\SetEnumitemKey{labDKCrossB}{label=\labDKsymCrossB,leftmargin=1.1em}%
-\SetEnumitemKey{labDKCrossC}{label=\labDKsymCrossC,leftmargin=1.1em}%
-\SetEnumitemKey{labDKCrossD}{label=\labDKsymCrossD,leftmargin=1.1em}%
-\SetEnumitemKey{labDKCrossE}{label=\labDKsymCrossE,leftmargin=1.1em}%
+%    (As this requires package-dependent commands, see the corresponding inclusion file: "2includes/packages/itemEnum.tex")
 %=================================
 % Label Symbols END
-%================================================
-%
-%
-%
-%
-%=================================
-% Presets for Usage as Itemization Label
-%================================================
-% USAGE: \begin{itemize}[\labpragA]   or   \item[\labpragAsym]
-%   (Standing for: Label-Prägnanz-#
-%   (The \labprag# are defined to be readily usable for a whole itemization environment (i.e. comprise also a fitting left-margin)
-%   (The \labprag#sym can be used for single items as they do only define the Symbol itself
-\newcommand{\labpragAsym}{\raisebox{.5\height}{\textbf{\scriptsize$\rightarrow$}}}%
-\SetEnumitemKey{labpragA}{label=\labpragAsym,leftmargin=1.25em}%
-\newcommand{\labpragBsym}{\raisebox{.5\height}{\textbf{$\scriptstyle\Rightarrow$}}}%
-\SetEnumitemKey{labpragB}{label=\labpragBsym,leftmargin=1.3em}%
-\newcommand{\labpragCsym}{\raisebox{.5\height}{\scalebox{0.7}{$\pointright$}}}%
-\SetEnumitemKey{labpragC}{label=\labpragCsym,leftmargin=1.3em}%
-\newcommand{\labpragDsym}{\raisebox{.4\height}{\scalebox{0.7}{$\blacktriangleright$}}}%
-\SetEnumitemKey{labpragD}{label=\labpragDsym,leftmargin=1.2em}%
-\newcommand{\labpragEsym}{\raisebox{.1\height}{\scalebox{0.6}{\compoundarrow}}}%
-\SetEnumitemKey{labpragE}{label=\labpragEsym,leftmargin=1.3em}%
-%=================================
-% Label-Presets END
 %================================================
 %
 %

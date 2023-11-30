@@ -13,6 +13,7 @@
 \definecolor{eclipse_keyword2}{RGB}{100,40,128}%Violet
 \definecolor{eclipse_keyword3}{RGB}{0,120,10}%Green
 \definecolor{eclipse_keyword4}{RGB}{0,0,192}%Blue
+\definecolor{eclipse_keyword5}{RGB}{155,40,128}%Purple
 \definecolor{eclipse_string}{rgb}{0.06, 0.10, 0.98}% #101AF9
 \def\lstsmallmath{\leavevmode\ifmmode \scriptstyle \else  \fi}
 \def\lstsmallmathend{\leavevmode\ifmmode  \else  \fi}
@@ -114,7 +115,7 @@
         inline,
         strlen,
     },
-    morekeywords=[2]{%Functions
+    morekeywords=[2]{%Predefined Library-Functions
         main,
         malloc,
         free,
@@ -136,7 +137,7 @@
         pcap_close,
         endl,
     },
-    morekeywords=[3]{%Typedefed, Names of Struct, Enum, ...
+    morekeywords=[4]{%Typedefed, Names of Struct, Enum, ...
         int8_t,
         uint8_t,
         int16_t,
@@ -156,7 +157,7 @@
         timeval,
         string,
     },
-    morekeywords=[4]{%Collection-Members
+    morekeywords=[5]{%Collection-Members
         tm_sec,
         tm_min,
         tm_hour,
@@ -166,7 +167,7 @@
         tv_sec,
         tv_nsec,
     },
-    morekeywords=[8]{%Special Keywords
+    morekeywords=[7]{%Special Keywords
         NULL,
         std,
         Socket,
@@ -175,12 +176,14 @@
         critical section
     },
     %
-    keywordstyle=[1]\color{eclipse_keyword1}\bfseries,%Basic Keywords. If, return, while, ...
-    keywordstyle=[2]\color{eclipse_keyword2}\bfseries,%Functions
-    keywordstyle=[3]\color{eclipse_keyword3},%Typedefed, Names of Struct, Enum, ...
-    keywordstyle=[4]\color{eclipse_keyword4},%Collection-Members
-    keywordstyle=[8]\color{eclipse_keyword1},%Special Keywords
-    keywordstyle=[9]\color{red}\bfseries,
+    keywordstyle=[1]\color{eclipse_keyword1}\bfseries,%Basic Keywords. If, return, while, void, int, ...
+    keywordstyle=[2]\color{eclipse_keyword2}\bfseries,%Predefined Library-Functions
+    keywordstyle=[3]\color{eclipse_keyword5},%Function-Calls
+    keywordstyle=[4]\color{eclipse_keyword3},%Typedefed, Names of Struct, Enum, ...
+    keywordstyle=[5]\color{eclipse_keyword4},%Collection-Members
+    keywordstyle=[7]\color{eclipse_keyword1},%Special Keywords. Like Basic, but not bold.
+    keywordstyle=[8]\color{eclipse_keyword2},%Special Keywords. Like Library-Funcs, but not bold.
+    keywordstyle=[9]\color{red}\bfseries,%Highlighting in Red (Pseudo-Code)
     stringstyle=\color{eclipse_string},
     commentstyle=\color{eclipse_comment}\itshape,
 }
@@ -397,6 +400,70 @@
     basicstyle=\scriptsize,
 }
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%							Listings fertig
+%							Listings Done
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%			Some commands for custom Formatting inside a listing
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\newcommand{\lstbasic}[1]{{\color{eclipse_keyword1}\textbf{\escapeus{#1}}}}%Basic Keywords. If, return, while, int, void
+\newcommand{\lstfunclib}[1]{{\color{eclipse_keyword2}\textbf{\escapeus{#1}}}}%Function from a predefined Library
+\newcommand{\lstfuncdecl}[1]{{\color{eclipse_keyword5}\textbf{\escapeus{#1}}}}%Formats like predefined Library-Functions. Might also look good on Function-Declaration
+\newcommand{\lstfunc}[1]{{\color{eclipse_keyword5}\escapeus{#1}}}%Any Function-Call of a self-declared Function
+\newcommand{\lsttype}[1]{{\color{eclipse_keyword3}\escapeus{#1}}}% For self-defined types, struct, enum
+\newcommand{\lstmember}[1]{{\color{eclipse_keyword4}\escapeus{#1}}}%Collection-Members, like struct
+\newcommand{\lstbasicalike}[1]{{\color{eclipse_keyword1}\escapeus{#1}}}%Special-Keywords. Like Basic, but not bold.
+\newcommand{\lstlibalike}[1]{{\color{eclipse_keyword2}\escapeus{#1}}}%Special-Keywords. Like Basic, but not bold.
+\newcommand{\lsthighl}[1]{{\color{red}\textbf{\escapeus{#1}}}}%Highlighting in red (Pseudo-Code)
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%			Cmds Done
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%            USAGE Instructions
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% Some Instructions on how to properly format a Listing.
+% The Problem to solve:
+%  - Standard Keywords are actually by itself properly formatted, like 'main', 'int', etc.
+%     -> What is automatically detected as such a keyword depends on the specified language at Listing-Inclusion
+%  - But of course, it cannot detect arbitrary functions-names, you defined, or typedefs, ...
+% To have them still nicely formatted, I provide two methods (Examples below):
+%  1) Just define them as "morekeywords" for their fitting category, on the \lstinputlisting
+%  2) Manual formatting. This would be done per word directly in the listing.
+%     In principle, you "escape-to-LaTeX" via a special escape-character. In my setup, I defined this to be '¢'. Everything between two of these, is treated as standard LaTeX, so you can format it.
+%     To make that easier, use the Commands, defined above.
+%------------------------------------------------------------------------
+%= = 1)   = = = = = = = =
+%    \lstinputlisting[frame=single, label=lst:ecs, captionpos=b,
+%        caption={ECS code snippet},
+%        language={C_var},
+%        morekeywords={[1]{void}},%Basic Keywords. If, return, int, void
+%        morekeywords={[2]{memcpy}},%Predefined Library-Functions
+%        morekeywords={[3]{some_function}},%Function-Calls
+%        morekeywords={[4]{PluginManager}},%Typedefed, Names of Struct, Enum, ...
+%        morekeywords={[5]{structMember}},%Collection-Members
+%        morekeywords={[7]{ReddishPurple}},%Special Keywords. Like Basic, but not bold.
+%        morekeywords={[8]{BlueishViolet}},%Special Keywords. Like Library-Func, but not bold.
+%        morekeywords={[9]{plugman_init}},%Highlighting in Red (Pseudo-Code)
+%    ]{\DenKrGraphicsRootDir/ecs.cpp}
+%
+%
+%= = 2)   = = = = = = = =
+%     Directly in the listing-File, e.g.:
+%           ¢\lstfunc{some_function}¢(argc, argv);
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%			Usage Done
 %------------------------------------------------------------------------
 %________________________________________________________________________
