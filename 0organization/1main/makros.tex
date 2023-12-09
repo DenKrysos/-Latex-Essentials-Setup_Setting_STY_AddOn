@@ -158,6 +158,18 @@
 \def\oblongdashSideY{0.3*\oblongdashSideX}%
 \path[fill,draw=none,line join=round,rounded corners=0.4*\oblongdashSideY](0,0)--++(\oblongdashSideX,0)--++(0,\oblongdashSideY)--++(-\oblongdashSideX,0)--cycle;%
 }}%
+\newcommand{\trianglerightcurvedback}{\tikz{%
+\def\tricurvedbHypo{1.2ex}%
+\def\tricurvedbH{1.2*\tricurvedbHypo}%
+\path[fill,draw=none,line join=miter,rounded corners=0](0,0)--++(\tricurvedbH,0.5*\tricurvedbHypo)--++(-\tricurvedbH,0.5*\tricurvedbHypo)%
+    ..controls%
+        (0.4*\tricurvedbH,0.5*\tricurvedbHypo)%
+        and%
+        (0.4*\tricurvedbH,0.5*\tricurvedbHypo)%
+    ..%
+%    to[out=-40,in=40]%
+cycle;%
+}}%
 %
 %
 \newcommand{\tikzarrow}{\tikz{\usetikzlibrary{shapes.arrows}\node[single arrow,scale=0.2,inner sep=2ex,fill]at(0,0){};}}%
@@ -262,6 +274,7 @@
 \newcommand{\labDKsymPointright}{\raiseC{\scalebox{0.7}{$\pointright$}}}%
 \newcommand{\labDKsymTriangle}{\raisebox{0.3\height}{\scalebox{0.9}{$\triangleright$}}}%
 \newcommand{\labDKsymTriangleBl}{\raiseC{\scalebox{0.7}{$\blacktriangleright$}}}%
+\newcommand{\labDKsymRTriCurvedB}{\raiseC{\scalebox{1}{$\trianglerightcurvedback$}}}%
 \newcommand{\labDKsymLozenge}{\raiseC{\scalebox{0.65}{$\mathrm{\lozenge}$}}}%
 \newcommand{\labDKsymLozengeBl}{\raiseC{\scalebox{0.65}{$\mathrm{\blacklozenge}$}}}%
 \newcommand{\labDKsymSquare}{\raiseC{\scalebox{0.55}{$\mathrm{\square}$}}}%
