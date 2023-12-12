@@ -5,7 +5,7 @@
 \selectlanguage{english}%
 % \AtEndPreamble{%
 \usepackage[babel,style=english]{csquotes}%
-\usepackage{tikz}%
+\input{"0organization/1main/2includes/packages/tikz".tex}%
 \usepackage{etoolbox}%
 \usepackage{xparse}%
 \input{"0organization/1main/2includes/packages/itemEnum".tex}%
@@ -27,11 +27,13 @@
 \begin{document}%
 \input{"0organization/1main/makros".tex}%
 \input{"0organization/1main/2includes/packages/typografie_cmd".tex}%
+\input{"0organization/1main/2includes/setup/typografie_symbol".tex}%
 %----------------------------------------------------
 %====================================================
 %####################################################
 
 
+\noindent |
 \begin{itemize}[labpragA]
 \item%
     labpragA
@@ -52,6 +54,7 @@
 \item%
     labpragE
 \end{itemize}
+H
 
 \par\vspace{\baselineskip}
 \begin{itemize}[labpragA]
@@ -196,6 +199,37 @@ MH
 \end{enumerate}
 \end{enumerate}
 \end{enumerate}
+
+
+
+\npi
+Some other Symbols, I defined:
+\begin{itemize}[label=,leftmargin=0pt]
+\item
+    \DenKrKomaHeadingAsterisk
+\item
+    \DenKrKomaHeadingPointRightA
+    \hspace{0.5em}%
+    \DenKrKomaHeadingPointRightB
+\item
+    \DenKrKomaHeadingTildeUp
+    \hspace{0.5em}%
+    \DenKrKomaHeadingTildeUpRotate
+    \hspace{0.5em}%
+    \DenKrKomaHeadingTildeDown
+    \hspace{0.5em}%
+    \DenKrKomaHeadingTildeDownRotateChar
+\item
+    \DenKrKomaHeadingTildeCross
+    \hspace{0.5em}%
+    \DenKrKomaHeadingTildeCrossRotate
+\item
+    \DenKrKomaHeadingTildeDouble
+    \hspace{0.5em}%
+    \DenKrKomaHeadingTildeDoubleRotate
+\item
+    \DenKrKomaHeadingSeedA
+\end{itemize}
 
 
 
