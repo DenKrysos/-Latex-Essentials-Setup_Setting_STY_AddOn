@@ -8,7 +8,7 @@
 %---------------------------------------------
 % Vertically aligning Text of different size
 %---------------------------------------------
-% USAGE Example: 
+% USAGE Example:
 %    \npi
 %    {\LARGE SomeUng --\raiseC{\normalsize -- OtherdgM-- }\raiseT{\normalsize -- OtherdgM-- }\raiseT{\normalsize -- OtherdM}}
 %    \npi
@@ -523,16 +523,16 @@ m O{Sidenote} O{0pt}%
 % \texorpdfstring{\glstext{#2}}{\glsentrytext{#2}}
 \makeatletter%
 \newcommand{\glstextHead}[1]{%
-    \expandafter\texorpdfstring{\expandafter\glsentrytext{#1}}{\expandafter\glsentrytext{#1}}%
+    \expandafter\texorpdfstring{\expandafter\glsentryshort{#1}}{\expandafter\glsentryshort{#1}}% glsentryshort, glsentrytext
 }%
 \newcommand{\glsdescHead}[1]{%
-    \expandafter\texorpdfstring{\expandafter\glsentrydesc{#1}}{\expandafter\glsentrydesc{#1}}%
+    \expandafter\texorpdfstring{\expandafter\glsentrylong{#1}}{\expandafter\glsentrylong{#1}}% glsentrylong, glsentrydesc
 }%
 \newcommand{\glstextplHead}[1]{%
-    \expandafter\texorpdfstring{\expandafter\glsentryplural{#1}}{\expandafter\glsentryplural{#1}}%
+    \expandafter\texorpdfstring{\expandafter\glsentryshortpl{#1}}{\expandafter\glsentryshortpl{#1}}% glsentryshortpl, glsentryplural
 }%
 \newcommand{\glsdescplHead}[1]{%
-    \expandafter\texorpdfstring{\expandafter\glsentrydescplural{#1}}{\expandafter\glsentrydescplural{#1}}%
+    \expandafter\texorpdfstring{\expandafter\glsentrylongpl{#1}}{\expandafter\glsentrylongpl{#1}}% glsentrylongpl, glsentrydescplural
 }%
 \makeatother%
 %
@@ -544,6 +544,8 @@ m O{Sidenote} O{0pt}%
 \newcommand{\glsInArticle}[1]{%
     \ifglsused{#1}{an}{a}%
 }%
+\providecommand{\glsdescpl}{}%
+\renewcommand{\glsdescpl}[1]{\glslink{#1}{\glsentrylongpl{#1}}}%
 %
 %
 %
@@ -620,23 +622,23 @@ m O{Sidenote} O{0pt}%
 % Optionen für fontseries und fontshape:
 % Series, any combination of weight and width is [in theory] possible:
 % weight                    width
-% Ultra Light       ul      Ultra Condensed     uc    
-% Extra Light       el      Extra Condensed     ec    
-% Light             l       Condensed            c      
-% Semi Light        sl      Semi Condensed      sc    
+% Ultra Light       ul      Ultra Condensed     uc
+% Extra Light       el      Extra Condensed     ec
+% Light             l       Condensed            c
+% Semi Light        sl      Semi Condensed      sc
 % Medium (normal)   m
-% Semi Bold         sb      Semi Expanded       sx    
-% Bold              b       Expanded             x 
-% Extra Bold        eb      Extra Expanded      ex 
+% Semi Bold         sb      Semi Expanded       sx
+% Bold              b       Expanded             x
+% Extra Bold        eb      Extra Expanded      ex
 % Ultra Bold        ub      Ultra Expanded      ux
 % %
 % Shape:
-% upright (normal)   n 
+% upright (normal)   n
 % italic             it
-% slanted/oblique    sl 
+% slanted/oblique    sl
 % small caps         sc
 % upright italic     ui
-% outline            ol 
+% outline            ol
 %
 %Inline English
 %Zum anders formatieren von nicht übersetzten, englischen Begriffen
@@ -718,7 +720,7 @@ m O{Sidenote} O{0pt}%
 %________________________________________________________________________
 %
 %
-% 
+%
 %
 %
 %
@@ -764,7 +766,7 @@ m O{Sidenote} O{0pt}%
 % Arg#5 (Optional): Alternatives Caption (TableOfContents usw.)
 % Arg#6: Number of Lines des Caption
 % Arg#7 (Optional): Liste mit folgendem Inhalt. Parameter zu Skalierung und Positionierung
-%			#1: Faktor der Seitenhöhe, der nicht überschritten werden soll 
+%			#1: Faktor der Seitenhöhe, der nicht überschritten werden soll
 %			#2: Faktor der Seitenbreite, der nicht überschritten werden soll
 %			#3: Positionierungsmodus. Bsp.: !ht, !htpb, H
 %	  Beispiel für ein Listen-Format: [1,1,!htp]
