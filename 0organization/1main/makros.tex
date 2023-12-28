@@ -335,6 +335,16 @@ cycle;%
 \newcommand{\myequalhat}{\mathrel{\widehat{=}}}%
 \newcommand{\myequalhatA}{\mathrel{\stackon[1.5pt]{=}{\stretchto{\scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}% Would require \usepackage{scalerel,stackengine,amsmath}
 %
+% NOTE on "Hypenation in Compund-Words (i.e. wie explicit dash '-' in-between). Something like: "Compund-Word"
+%   You may know, when you create a compound-word, hyphenation is deactivated for the parts of the compound-word and a line-break can only occur on the dash.
+%   However, the package "babel.sty" provides some special "shorthands" to force a different behavior, but only in some languages, like german.
+%   Howeverever, compiling with LuaLaTeX, one is better of to not use babel, but polyglossia instead.
+%   Howevereverever, polyglossia supports the option "babelshorthands". Pass this to the package and the same shorthands as known from babel are available, and that with every language.
+% - So much for the explanation, tl;dr:
+%   - With pdfLaTeX, usepackage{babel} and then use the macro below
+%   - With LuaLaTex, \usepackage[babelshorthands]{polyglossia} and simply use "=  instead of a plain -
+% -> Then, still an ordinary dash is printend and in additoin, hyphenations on other positions in compound-words, other than the dash are still possible.
+% - - - - - - -
 % Creates an ordinary text-dash ('-'), but with leaving hyphenation active for the joined words
 %  (For this, 'ngerman' has to be defined (possibly unproblematically among others) by babel.sty)
 \newcommand{\hyphdash}{\foreignlanguage{ngerman}{"=}}% Variant for Babel
